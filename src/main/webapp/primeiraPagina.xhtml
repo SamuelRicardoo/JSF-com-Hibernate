@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Minha Página JSF</title>
+</h:head>
+
+<h:body>
+
+	<h:form id="formPessoa">
+
+		<h1>Bem-vindo ao JSF!</h1>
+
+
+		<h:outputLabel value="Id: " />
+		<h:inputText value="#{pessoaBean.pessoa.id}" readonly="true" />
+		
+		<br />
+		
+		<h:outputLabel value="Nome:" />
+		<h:inputText value="#{pessoaBean.pessoa.nome}" />
+
+		<br />
+		
+		<h:outputLabel value="Email:" />
+		<h:inputText value="#{pessoaBean.pessoa.email}" />
+		<br />
+		
+		<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" />
+		<h:commandButton value="Novo" action="#{pessoaBean.novo}" />
+		<h:commandButton value="Remover" action="#{pessoaBean.deletar}" />
+	
+		<h:dataTable value="#{pessoaBean.pessoaLista}" var="p">
+			
+			 <h:column>    				
+               <h:outputText value= "#{p.id}"/> 
+            </h:column>
+            
+			 <h:column>    				
+               <h:outputText value= "#{p.nome}"/> 
+            </h:column>	 
+            
+            <h:column>    				
+               <h:outputText value= "#{p.email}"/> 
+            </h:column>
+            s
+          	<h:column>
+				<h:commandLink value="Editar" action="#{pessoaBean.editar(p)}" />
+          	</h:column>
+          	
+          	<h:column>
+				<h:commandLink value="Excluir" action="#{pessoaBean.deletar}">
+					<f:setPropertyActionListener  target="#{pessoaBean.pessoa}" value="#{p}"></f:setPropertyActionListener>
+				</h:commandLink>
+          	</h:column>
+            
+            
+		</h:dataTable>
+		
+		
+		
+		
+		
+	</h:form>
+
+</h:body>
+
+</html>
